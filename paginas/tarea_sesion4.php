@@ -29,10 +29,6 @@
         $numero = 1;
         while ($numero <= 200) {
             echo '<tr>';
-
-
-
-
             if ($numero % 2 == 0) {
                 echo '<td style="background-color:rgba(225, 92, 160, 0.15);">' . $numero . '</td>';
                 echo '<td style="background-color:rgba(225, 92, 160, 0.15);">' . ($numero * $numero) . '</td>';
@@ -52,7 +48,7 @@
         ?>
         <h1 class="text">Esta Pagina Fue desarrollada por Jesus Santos</h1>
 
-        <a href="" class="text" target="_blank" style="font-size: 30px;"> Repositorio</a>
+        <a href="https://github.com/Chaetard/programWeb2023b/blob/master/paginas/tarea_sesion4.php" class="text" target="_blank" style="font-size: 30px;"> Repositorio</a>
     </div>
 </body>
 
