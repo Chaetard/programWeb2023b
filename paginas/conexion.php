@@ -21,10 +21,10 @@
 <body>
     <?php
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $basededatos = "prograweb";
+    $servername = "fdb1030.atspace.me:3306";
+    $username = "4244598_santos";
+    $password = "hola123456";
+    $basededatos = "4244598_santos";
 
     // Crear conexion
     try {
