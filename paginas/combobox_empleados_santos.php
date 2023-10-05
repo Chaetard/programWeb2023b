@@ -105,7 +105,7 @@ body { background-color:#999;}
    <div id="caja4">
      <div id="texto1"><br>
         <fieldset style="width:90%"    >
-            <legend>Departamentos de la empresa</legend>
+            <legend>Empleados de la empresa</legend>
           <br />
           <form action="detalle_departamento.php" method="post" id="formulario1">
                 <div>
