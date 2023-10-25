@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+h2 {
+  font-size: 30px;
+  text-align: center;
+}
+.contenedor {
+  text-align: center;
+  height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(128, 128, 128, 0.183);
+  border: 1px solid black;
+  margin: 30px;
+  border-radius: 20px;
+}
+table {
+  height: 70vh;
+  width: 90%;
+}
+h3 {
+  font-size: 20px;
+  text-align: center;
+}
+th {
+  font-size: 20px;
+}
+#nombre {
+  border-radius: 10px;
+  margin: 5px;
+}
+#nombre:hover {
+  background-color: rgba(0, 182, 182, 0.447);
+  transition: 0.5s;
+}
+a {
+  text-decoration: none;
+  color: black;
+}

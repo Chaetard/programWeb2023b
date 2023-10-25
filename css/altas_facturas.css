@@ -1,0 +1,47 @@
+*{
+    margin: 0;
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+}
+
+.contenedor{
+    width: auto !important;
+}
+body{
+    justify-content: center;
+}
+.nav{
+    border-radius: 0 0 10px 10px;
+}
+input, select, label,option {
+    color: black !important;
+    margin: 10px !important;
+}
+label{
+    color: white !important;
+}
+.formulario{
+    border-radius: 20px;
+    
+}
+form{
+    text-align: left;
+    padding: 20px;
+}
+.contenedor-items{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.contenedor-nam{
+    margin: 20px;
+    
+}
+p{
+    padding-left: 20px;
+    width: 60%;
+    border-radius: 20px;
+
+}
