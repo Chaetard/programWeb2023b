@@ -4,7 +4,7 @@ require_once "conexion.php";
 $result = "";
 
 //   //Escribimos la consulta para recuperar los abonos de la tabla abonos **************
-$sql = 'SELECT id_abono, fecha_abono FROM abonos';
+$sql = 'SELECT id_factura, nombre_empresa FROM facturas';
 //   //Almacenamos los resultados de la consulta en una variable llamada $smtp a partir de la conexión
 $stmt = $conn->query($sql);
 //   //Recuperamos los valores de los registros de la tabla que ya están en la variable $stmt
@@ -42,12 +42,6 @@ if (empty($rows)) {
 
             var valorFechaIni = document.getElementById("fechaIni").value;
 
-            var valorLugar = document.getElementById("lugar").value;
-
-            var nomEmpresa = document.getElementById("txtNomEmpresa").value;
-
-            var fechaVen = document.getElementById("fechaVen").value;
-
             var NumMonto = document.getElementById("NumMonto").value;
 
             var estado = document.getElementById("combo_estado").selectedIndex;
@@ -63,36 +57,21 @@ if (empty($rows)) {
                 alert("Debes escribir la fecha Inicial de la Factura");
                 document.getElementById("fechaIni").focus();
                 return false;
-            } else if (valorLugar == null || valorLugar.length == 0 || /^\s+$/.test
-                (valorLugar)) {
-                alert("Debes escribir el lugar de emicion de la factura");
-
-                document.getElementById("lugar").focus();
-                return false;
-            } else if (nomEmpresa == null || nomEmpresa.length == 0 || /^\s+$/.test(nomEmpresa)) {
-                alert("Debes escribir el nombre de la Empresa");
-                document.getElementById("txtNomEmpresa").focus();
-                return false;
-
-            } else if (fechaVen == null || fechaVen.length == 0 || /^\s+$/.test(fechaVen)) {
-                alert("Debes escribir Una Fecha de Vencimiento");
-                document.getElementById("fechaVen").focus();
-                return false;
-            } else if (NumMonto == null || NumMonto.length == 0 || !/^([0-9])*$/.test(NumMonto)) {
+            }  else if (NumMonto == null || NumMonto.length == 0 || !/^([0-9])*$/.test(NumMonto)) {
                 alert("Debes escribir el monton total de la factura utilizando solamente números");
                 document.getElementById("NumMonto").value = "";
                 document.getElementById("NumMonto").focus();
                 return false;
             }
             else if (estado == null || estado == 0) {
-                alert("Debes elegir un estado");
+                alert("Debes elegir un metodo de Pago");
                 document.getElementById("combo_estado").focus();
                 return false;
             } else if (abono == null || abono == 0) {
-                alert("Debes elegir el abono asignado a la factura");
+                alert("Debes elegir la factura");
                 document.getElementById("combo_abono").focus();
                 return false;
-            } 
+            }
             return true;
         }
         //-->
@@ -112,7 +91,7 @@ if (empty($rows)) {
                 <h5>Programación web</h5>
             </div>
             <div class="col-4 ">
-                <h6>Formulario para alta de Facturas en la base de datos desde una página web</h6>
+                <h6>Formulario para alta de Abonos en la base de datos desde una página web</h6>
             </div>
         </div>
 
@@ -136,58 +115,54 @@ if (empty($rows)) {
 
 
 
-                <form class="bg-success  formulario  " action="grabar_datos.php" method="post" id="formulario1"
+                <form class="bg-success  formulario  " action="grabar_datos_abonos.php" method="post" id="formulario1"
                     onsubmit="return ValidaFormulario()">
-                    <h1>Registro de Una Factura</h1>
+                    <h1>Registro de Una Abono</h1>
 
                     <div class="contenedor-items">
 
 
 
-                        <label for="abono">Abono:</label>
+                        <label for="abono">Factura:</label>
                         <select name="combo_abono" id="combo_abono">
-                            <option value="0">-- Selecciona un abono --</option>
+                            <option value="0">-- Selecciona una Factura --</option>
                             <?php
                             foreach ($rows as $row) {
-                                echo '<option value="' . $row['abono'] . '">' . $row['id_abono'] . '</option>';
+                                echo '<option value="' . $row['id_factura'] . '">' . $row['nombre_empresa'] . '</option>';
                             }
                             ?>
 
                         </select>
 
+                        <label for="txtfacturaid"> Ingresa un id del Abono</label>
+                        <input type="text" name="txtfacturaid" id="txtfacturaid">
 
-                        <label for="txtfacturaid">Número de la Factura:</label>
 
-                        <input type="text" name="txtfacturaid" id="txtfacturaid" size="10">
-
-                        <label for="fechaIni">Fecha de Emicion:</label>
+                        <label for="fechaIni">Fecha de Abono:</label>
 
                         <input type="date" name="fechaIni" id="fechaIni">
 
-                        <label for="lugar">lugar de Emicion:</label>
-
-                        <input type="text" name="lugar" id="lugar" maxlength="25">
-
-                        <label for="txtNomEmpresa">Nombre de la Empresa:</label>
-
-                        <input type="text" name="txtNomEmpresa" id="txtNomEmpresa" maxlength="40">
-
-                        <label for="fechaVen">Fecha de Vencimiento:</label>
-
-                        <input type="date" name="fechaVen" id="fechaVen">
 
 
-                        <label for="NumMonto"> Monto Total:</label>
+
+
+
+
+
+
+                        <label for="NumMonto"> Monto de Abono:</label>
 
                         <input type="text" name="NumMonto" id="NumMonto" maxlength="20">
 
-                        <label for="combo_estado">Estado:</label>
+                        <label for="combo_estado">Metodo de Pago:</label>
 
                         <select name="combo_estado" id="combo_estado">
-                            <option value="0">-- Selecciona un Estado --</option>
-                            <option value="PAGADO">Pagado</option>
-                            <option value="PENDIENTE">Pendiente</option>
-                            <option value="VENCIDO">Vencido</option>
+                            <option value="0">-- Selecciona un Metodo de Pago --</option>
+                            <option value="TARJETA">Tarjeta</option>
+                            <option value="EFECTIVO">Efectivo</option>
+                            <option value="TRANSFERENCIA">TRANSFERENCIA</option>
+                            <option value="CHEQUE">Cheque</option>
+
                         </select>
 
 
@@ -197,7 +172,7 @@ if (empty($rows)) {
 
 
                     <input class="btn btn-primary" type="submit" name="AddFactura" id="AddFactura"
-                        value="  Registrar esta Factura" />
+                        value="  Registrar este Abono" />
 
                 </form>
             </div>
@@ -215,5 +190,3 @@ if (empty($rows)) {
     $conn = null;
     ?>
 </body>
-
-</html>

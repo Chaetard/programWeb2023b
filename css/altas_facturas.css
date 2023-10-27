@@ -37,11 +37,45 @@ form{
 
 .contenedor-nam{
     margin: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
     
 }
-p{
+a{  
+    text-decoration: none;
+    color: white;
     padding-left: 20px;
     width: 60%;
     border-radius: 20px;
+    padding: 5px;
+    transition: 0.1s;
 
+}
+a:hover{
+    background-color: rgba(4, 143, 212, 0.37);
+    transform: scale(1.05);
+    transition: 0.2s;
+}
+
+.regiExist{
+    background-color: rgba(15, 4, 212, 0.648);
+    font-weight: 700;
+    border-radius: 10px;
+}
+
+#reporte, #otraFac{
+    background-color: rgb(255, 174, 0);
+    font-weight: 700;
+    border-radius: 20px;
+    font-size: 13px;
+    text-align: center;
+
+}
+
+.tablas_abonos{
+    background-color: red !important;
+    
 }

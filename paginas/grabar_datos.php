@@ -21,9 +21,7 @@ $sql = "SELECT * FROM facturas WHERE id_factura=" . $txtfacturaid;
 $result = $conn->query($sql);
 $rows = $result->fetchAll();
 
-$sql2 = "SELECT * FROM facturas";
-$result2 = $conn->query($sql2);
-$rows2 = $result2->fetchAll();
+
 
 
 
@@ -47,6 +45,9 @@ if (empty($rows)) {
     $sexo = "";
     $departamento = "";
 }
+$sql2 = "SELECT * FROM facturas";
+$result2 = $conn->query($sql2);
+$rows2 = $result2->fetchAll();
 ?>
 <!doctype html>
 <html>
@@ -59,7 +60,7 @@ if (empty($rows)) {
 
 </head>
 
-<body class="bg-dark d-flex">
+<body class=" d-flex">
 
 
     <div class="conatiner-fluid text-center contenedor">
@@ -81,28 +82,40 @@ if (empty($rows)) {
         <div class="row">
             <div class="col-8 ">
 
-                <div class="bg-success mb-3 formulario">
+                <div class="bg-success  formulario">
 
                     <div class="contenedor-nam">
 
-                    <h1>Factuas Registradas</h1>
-                        <?php
+                        <h1>Facturas Registradas</h1>
 
 
-                        foreach ($rows2 as $row2) {
 
-                            if ($row2['id_factura'] == $txtfacturaid) {
-                                echo '<p style="background-color:red; text-align: left;">' . $row2['id_factura'] . '--' . $row2['nombre_empresa'] . '--' . $row2['estado_pago'] . '</p>';
-                            } else {
-                                echo '<p style=" text-align: left;">' . $row2['id_factura'] . '--' . $row2['nombre_empresa'] . '--' . $row2['estado_pago'] . '</p>';
+                        <a id="reporte" href="reporte_general_santos.php">Reporte de registros capturados en mi tabla
+                            tipo catálogo</a>
+
+                       
+
+                            <?php
+
+
+                            foreach ($rows2 as $row2) {
+
+                                if ($row2['id_factura'] == $txtfacturaid) {
+                                    echo '<a href=detalle_registro.php?id=' . $row2['id_factura'] . ' class="regiExist">' . ' <button class="btn  btn-info">Ver Mas </button> ' . $row2['id_factura'] . '  ' . $row2['nombre_empresa'] . '  ' . $row2['estado_pago'] . '</a>';
+                                } else {
+
+
+
+
+                                    echo '<a href=detalle_registro.php?id=' . $row2['id_factura'] . '>' . ' <button class="btn  btn-info">Ver Mas </button> ' . $row2['id_factura'] . '  ' . $row2['nombre_empresa'] . '  ' . $row2['estado_pago'] . '</a>';
+                                }
+
+
+
                             }
 
-
-
-                        }
-
-                        ?>
-
+                            ?>
+                        </a>
                     </div>
 
                 </div>
@@ -110,7 +123,7 @@ if (empty($rows)) {
             </div>
 
 
-            <div class="col-4 mb-3 bg-danger formulario">
+            <div class="col-4  bg-danger formulario">
                 <legend>
                     <?php echo $mensaje; ?>
                 </legend>
@@ -140,7 +153,7 @@ if (empty($rows)) {
                     <?php echo ($estado); ?>
                     <br />
                     <br />
-                    <a href="alta_facturas_jesus.php">REGISTRAR OTRA FACTURA</a>
+                    <a id="otraFac" href="alta_factura_jesus.php">REGISTRAR OTRA FACTURA</a>
                 </div>
 
             </div>

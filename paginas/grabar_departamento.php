@@ -7,7 +7,7 @@
 	$nombre = strtoupper(trim($_POST["txtdepartamento"])); //Se convierte a MAYUSCULAS
 	
 	
-	$sql = "SELECT * FROM departamentos WHERE departamento= " . $numero ;
+	$sql = "SELECT * FROM departamentos WHERE departamento= '$numero'"  ;
 	$result = $conn->query($sql);
     $rows = $result->fetchAll();
 	
