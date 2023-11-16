@@ -1,22 +1,22 @@
 <?php
     require_once "conexion.php";
-	$idDepartamento= $_GET["id"];
-	$idDepartamento = trim($idDepartamento);
+	$id_abono= $_GET["id"];
+	$id_abono = trim($id_abono);
 	
-	if($idDepartamento == ""){
-		header("location: reporte_elimina_departamentos.php");
+	if($id_abono == ""){
+		header("location: reporte_para_editar_relacionada_jesus.php");
 		exit();
 	}
 
-	if(is_null($idDepartamento)){
-		header("location: reporte_elimina_departamentos.php");
+	if(is_null($id_abono)){
+		header("location: reporte_para_editar_relacionada_jesus.php");
 		exit();
 	}
 
-    $sql3 = "SELECT * FROM departamentos where departamento= '$idDepartamento'";
+    $sql3 = 'SELECT A.id_abono, A.id_factura, A.fecha_abono, A.monto_abono, A.metodo_pago, F.nombre_empresa FROM abonos A INNER JOIN facturas F ON A.id_factura = F.id_factura where A.id_abono = ' . $id_abono . '';
     $result = $conn->query($sql3);
     $rows = $result->fetchAll();
-	$sqlBorrar = "DELETE From departamentos WHERE departamento = '$idDepartamento' ";
+	$sqlBorrar = "DELETE From abonos WHERE id_abono = '$id_abono' ";
     $conn->exec($sqlBorrar);
 ?>
 <!doctype html>
@@ -107,7 +107,7 @@ body { background-color:#999;}
 
    <div id="caja1">Licenciatura en Tecnologías de la Información</div>
    <div id="caja2">Programación web</div>
-   <div id="caja3">Datos del departamento que se han eliminado satisfactoriamente</div>
+   <div id="caja3">Datos de la Factura que se han eliminado satisfactoriamente</div>
  
    <div id="caja4">
      <div id="texto1"><br>
@@ -117,8 +117,11 @@ body { background-color:#999;}
         <table border="1" width="100%">
         <thead>
             <tr>
-                <th>Departamento</th>
-                <th>Descripcion</th>
+                <th>Id Abono</th>
+                <th>Empresa</th>
+				<th>Fecha del Abono</th>
+				<th>Monto Abonado</th>
+				<th>Metodo de Pago</th>
                 
             </tr>
         </thead>
@@ -129,10 +132,13 @@ body { background-color:#999;}
 			//Imprimimos en la página EL UNICO REGISTRO de MySQL en un renglon de HTML
         ?>
             <tr>
-                <td><?php echo $row['departamento']; ?></td>
-                <!-- Creamos una celda con un enlace HTML que apunta a otro archivo PHP -->
-                <td><?php echo $row['descripcion']; ?></td>
+                <td><?php echo $row['id_abono']; ?></td>
+               
+                <td><?php echo $row['nombre_empresa']; ?></td>
                 
+				<td><?php echo $row['fecha_abono']; ?></td>
+				<td><?php echo $row['monto_abono']; ?></td>
+				<td><?php echo $row['metodo_pago']; ?></td>
             </tr>
         <?php } ?>
         <tr>
@@ -142,12 +148,12 @@ body { background-color:#999;}
         </tr>
         <tr>
        
-    		<td><a href="reporte_elimina_departamentos.php">
+    		<td><a href="reporte_para_editar_relacionada_jesus.php">
 				        <<< --- Regresar al reporte completo (Para eliminar mas registros)
                 </a>
             </td>
     		
-    		 <th><a href="alta_departamentos.php">Agregar otro departamento</a></th>
+    		 <th><a href="alta_abonos_jesus.php">Agregar otra Abonos</a></th>
         </tr>
         </tbody>
     </table>

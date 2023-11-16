@@ -1,22 +1,22 @@
 <?php
     require_once "conexion.php";
-	$idDepartamento= $_GET["id"];
-	$idDepartamento = trim($idDepartamento);
+	$id_factura= $_GET["id"];
+	$id_factura = trim($id_factura);
 	
-	if($idDepartamento == ""){
-		header("location: reporte_elimina_departamentos.php");
+	if($id_factura == ""){
+		header("location: reporte_para_editar_catalogo_jesus.php");
 		exit();
 	}
 
-	if(is_null($idDepartamento)){
-		header("location: reporte_elimina_departamentos.php");
+	if(is_null($id_factura)){
+		header("location: reporte_para_editar_catalogo_jesus.php");
 		exit();
 	}
 
-    $sql3 = "SELECT * FROM departamentos where departamento= '$idDepartamento'";
+    $sql3 = "SELECT * FROM facturas where id_factura= '$id_factura'";
     $result = $conn->query($sql3);
     $rows = $result->fetchAll();
-	$sqlBorrar = "DELETE From departamentos WHERE departamento = '$idDepartamento' ";
+	$sqlBorrar = "DELETE From facturas WHERE id_factura = '$id_factura' ";
     $conn->exec($sqlBorrar);
 ?>
 <!doctype html>
@@ -107,7 +107,7 @@ body { background-color:#999;}
 
    <div id="caja1">Licenciatura en Tecnologías de la Información</div>
    <div id="caja2">Programación web</div>
-   <div id="caja3">Datos del departamento que se han eliminado satisfactoriamente</div>
+   <div id="caja3">Datos de la Factura que se han eliminado satisfactoriamente</div>
  
    <div id="caja4">
      <div id="texto1"><br>
@@ -117,8 +117,11 @@ body { background-color:#999;}
         <table border="1" width="100%">
         <thead>
             <tr>
-                <th>Departamento</th>
-                <th>Descripcion</th>
+                <th>Nombre Empresa</th>
+                <th>Monto Total</th>
+				<th>Fecha de Emision</th>
+				<th>Id Factura</th>
+				<th>estado_pago</th>
                 
             </tr>
         </thead>
@@ -129,10 +132,13 @@ body { background-color:#999;}
 			//Imprimimos en la página EL UNICO REGISTRO de MySQL en un renglon de HTML
         ?>
             <tr>
-                <td><?php echo $row['departamento']; ?></td>
-                <!-- Creamos una celda con un enlace HTML que apunta a otro archivo PHP -->
-                <td><?php echo $row['descripcion']; ?></td>
+                <td><?php echo $row['nombre_empresa']; ?></td>
+               
+                <td><?php echo $row['monto_total']; ?></td>
                 
+				<td><?php echo $row['fecha_emision']; ?></td>
+				<td><?php echo $row['id_factura']; ?></td>
+				<td><?php echo $row['estado_pago']; ?></td>
             </tr>
         <?php } ?>
         <tr>
@@ -142,12 +148,12 @@ body { background-color:#999;}
         </tr>
         <tr>
        
-    		<td><a href="reporte_elimina_departamentos.php">
+    		<td><a href="reporte_para_editar_catalogo_jesus.php">
 				        <<< --- Regresar al reporte completo (Para eliminar mas registros)
                 </a>
             </td>
     		
-    		 <th><a href="alta_departamentos.php">Agregar otro departamento</a></th>
+    		 <th><a href="alta_factura_jesus.php">Agregar otra Factura</a></th>
         </tr>
         </tbody>
     </table>
