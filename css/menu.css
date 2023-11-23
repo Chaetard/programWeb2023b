@@ -1,0 +1,32 @@
+.contLista {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+}
+
+h1 {
+  text-align: center;
+  color: white;
+  font-size: 50px;
+  font-family: "Roboto", sans-serif;
+}
+.listaA {
+  color: white !important;
+  padding: 20px;
+  text-decoration: none;
+}
+
+.listaA:hover {
+  background-color: green;
+  color: white;
+}
+.contenedorListasMain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imgCont{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
